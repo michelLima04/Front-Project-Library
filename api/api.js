@@ -27,6 +27,7 @@ export const getListar = async () => {
         throw error;
     }
 }
+
 export const postEmprestar = async (idBook, nomeUser, anoNasc) => {
     try {
         let myBody = {
