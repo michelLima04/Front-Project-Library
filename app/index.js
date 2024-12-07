@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 import { Button, Modal, ScrollView, TextInput } from "react-native-web";
 import { router } from "expo-router";
 import { getListar } from "../api/api";
@@ -13,6 +12,8 @@ export default function Page() {
   const [name, setName] = useState("");
   const [dtNascimento, setDtNascimento] = useState("");
   const [bookId, setBookId] = useState();
+  const [sinopse, setSinopse] = useState("");
+  const [qtd, setQtd] = useState("");
 
  
 
@@ -21,10 +22,10 @@ export default function Page() {
     const getBooks = async () => {
       const data = await getListar()
       setBooks(data)
-      //console.log(data)
+      console.log(data)
     }
     getBooks();
-    console.log(books)
+    //console.log(books)
   }, [])
 
   const handleRent = async () => {
@@ -54,64 +55,18 @@ export default function Page() {
           }}>
             <View style={styles.card}>
             
-               <Text>Livro: {item.titulo} </Text>
-              
-
-
+            <Text style={styles.titleBook}>{item.titulo}</Text>
+            <Text style={styles.authorBook}>{item.autor}</Text>
+            <Text style={styles.yearBook}>{item.ano}</Text>
+            
             </View>
             
           </Pressable>
           
         ))}
+
         </ScrollView>
         
-
-        <ScrollView>
-          {books.map((item) => (
-            <View 
-              style={styles.card} 
-              key={item.id}
-            >
-              <Text style={styles.titleBook}>{item.titulo}</Text>
-              <Text style={styles.authorBook}>{item.autor}</Text>
-              <Text style={styles.yearBook}>{item.ano}</Text>
-
-              <TouchableOpacity 
-                style={styles.btn}
-                onPress={() => [ setBookId(item.id), setModalVisible(true)]}
-              >
-                <Text style={styles.btnText}>Emprestar</Text>
-              </TouchableOpacity>
-            </View>
-          ))}
-        </ScrollView>
-
-        
-
-
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.modalView}>
-            <TextInput 
-              value={name}
-              onChangeText={setName}
-              placeholder="Nome:"
-            />
-            <TextInput 
-              value={dtNascimento}
-              onChangeText={setDtNascimento}
-              placeholder="Data de nascimento:"
-            />
-            <Button title="Emprestar livro" onPress={() => handleRent()} />
-            <Button title="Fechar Modal" onPress={() => setModalVisible(!modalVisible)} />
-          </View>
-        </Modal>
       </View>
     </>
   )
@@ -144,11 +99,13 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   authorBook: {
+    textAlign: "center",
     marginTop: 15,
     textTransform: 'capitalize',
     fontSize: 14
   },
   yearBook: {
+    textAlign: "center",
     fontSize: 12,
     fontWeight: "bold"
   },

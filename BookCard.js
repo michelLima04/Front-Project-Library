@@ -1,9 +1,9 @@
 import { CircleCheck } from "lucide-react-native";
-import {  View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 
-const TaskCard = ({ idBook, nomeUser, anoNasc, onClick }) => {
+const TaskCard = ({idBook, nomeUser, anoNasc, onClick }) => {
     return (
         <View style={styles.card}>
             <View style={styles.header}>
