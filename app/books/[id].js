@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
-import { getLerUnicoLivro } from "../../api/api";
+import { getLerUnicoLivro, postEmprestar } from "../../api/api";
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import {  Button, Modal, ScrollView, TextInput} from "react-native-web";
@@ -15,6 +15,10 @@ export default function BooksPage() {
     const [bookId, setBookId] = useState();
     const { id } = useLocalSearchParams();
 
+    const handleRent = async () => {
+        const rent = await postEmprestar(bookId, name, dtNascimento);
+        console.log(rent)
+    }
 
     useEffect(() => {
         const getBook = async () => {
@@ -36,7 +40,7 @@ export default function BooksPage() {
 
                     <TouchableOpacity
                         style={styles.btnEmprestar}
-                        onPress={() => [setBookId(item.id), setModalVisible(true)]}
+                        onPress={() => [setBookId(book.id), setModalVisible(true)]}
                     >
                         <Text style={styles.emprestarText}>Emprestar</Text>
                     </TouchableOpacity>
@@ -53,7 +57,42 @@ export default function BooksPage() {
                     >
                         <Text style={styles.voltarText}>Voltar</Text>
                     </TouchableOpacity>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => setModalVisible(false)}
+                    >
+                        <View style={styles.modalBackground}>
+                        <View style={styles.modalContainer}>
+                            <Text style={styles.modalTitle}>Exemplo de Modal</Text>
 
+                            <TextInput
+                            style={styles.textInput}
+                            placeholder="Nome Completo:"
+                            value={name}
+                            onChangeText={(value) => setName(value)}
+                            />
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Ano nascimento:"
+                                value={dtNascimento}
+                                onChangeText={(value) => setDtNascimento(value)}
+                            />
+
+                            <View style={styles.buttonContainer}>
+                            <Button
+                                title="Fechar Modal"
+                                onPress={() => setModalVisible(false)}
+                            />
+                            <Button
+                                title="Salvar"
+                                onPress={() => handleRent()}
+                            />
+                            </View>
+                        </View>
+                        </View>
+                    </Modal>  
 
                 </View>
             </View>
@@ -135,6 +174,34 @@ const styles = StyleSheet.create({
         textTransform: "uppercase"
     },
 
-
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo escuro para o modal
+      },
+      modalContainer: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        width: 300,
+      },
+      modalTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+      },
+      textInput: {
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingLeft: 8,
+        borderRadius: 5,
+      },
+      buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
 
 })

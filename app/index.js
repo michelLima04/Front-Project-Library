@@ -33,12 +33,6 @@ export default function Page() {
     //console.log(response)
   }
 
-  const exemple = [{id:1},{id:2},{id:3},
-                   {id:4},{id:5},{id:6},
-                   {id:7},{id:8},{id:9},
-                   {id:10},{id:11},{id:12},
-                   {id:13},{id:14},{id:15}]
-
   return (
     <>
     
@@ -46,24 +40,24 @@ export default function Page() {
         <Text style={styles.title}>Biblioteca</Text>
 
         <ScrollView>
-        {books.map((item, index) => (
-          <Pressable onPress={() => {
-            router.push({
-              pathname: "books/[id]",
-              params: {id: item.id}
-            })
-          }}>
-            <View style={styles.card}>
+          {books.map((item, index) => (
+            <Pressable onPress={() => {
+              router.push({
+                pathname: "books/[id]",
+                params: {id: item.id}
+              })
+            }}>
+              <View style={styles.card}>
+              
+              <Text style={styles.titleBook}>{item.titulo}</Text>
+              <Text style={styles.authorBook}>{item.autor}</Text>
+              <Text style={styles.yearBook}>{item.ano}</Text>
+              
+              </View>
+              
+            </Pressable>
             
-            <Text style={styles.titleBook}>{item.titulo}</Text>
-            <Text style={styles.authorBook}>{item.autor}</Text>
-            <Text style={styles.yearBook}>{item.ano}</Text>
-            
-            </View>
-            
-          </Pressable>
-          
-        ))}
+          ))}
 
         </ScrollView>
         

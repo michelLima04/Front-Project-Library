@@ -48,8 +48,7 @@ export const postEmprestar = async (idBook, nomeUser, anoNasc) => {
             throw new Error("Post request failed!")
         }
 
-        const textData = await response.text();
-        return JSON.parse(textData);
+        return null;
 
     } catch (error) {
         console.error(error);
