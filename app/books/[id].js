@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { getLerUnicoLivro, postEmprestar } from "../../api/api";
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
-import {  Button, Modal, ScrollView, TextInput} from "react-native-web";
+import { Button, Modal, ScrollView, TextInput } from "react-native-web";
 
 export default function BooksPage() {
     const [book, setBook] = useState([]);
@@ -13,11 +13,38 @@ export default function BooksPage() {
     const [sinopse, setSinopse] = useState("");
     const [qtd, setQtd] = useState("");
     const [bookId, setBookId] = useState();
+    const [alert1, setAlert1] = useState(false); //Estoque insuficiente
+    const [alert2, setAlert2] = useState(false); //Sem dados
+    const [alert3, setAlert3] = useState(false); //Emprestado!
     const { id } = useLocalSearchParams();
 
     const handleRent = async () => {
+
+
+        if (name === "" || dtNascimento === "") {
+            setAlert2(true);
+            setTimeout(() => {
+                setAlert2(false);
+            }, 2000);
+            return;
+            
+        }else if (book.qtd < 1) {
+            setAlert1(true);
+            setTimeout(() => {
+                setAlert1(false);
+            }, 2000);
+            return;
+
+        }else{
+            setAlert3(true);
+            setTimeout(() => {
+                setAlert3(false);
+            }, 3000);
+        }
+
         const rent = await postEmprestar(bookId, name, dtNascimento);
-        console.log(rent)
+
+        setAlert1(false);
     }
 
     useEffect(() => {
@@ -27,7 +54,6 @@ export default function BooksPage() {
             console.log(data)
         }
         getBook();
-        //console.log(book)
     }, [])
 
     return (
@@ -51,8 +77,8 @@ export default function BooksPage() {
                         onPress={() =>
                             router.push({
                                 pathname: "/",
-                    
-                              })
+
+                            })
                         }
                     >
                         <Text style={styles.voltarText}>Voltar</Text>
@@ -64,35 +90,60 @@ export default function BooksPage() {
                         onRequestClose={() => setModalVisible(false)}
                     >
                         <View style={styles.modalBackground}>
-                        <View style={styles.modalContainer}>
-                            <Text style={styles.modalTitle}>Exemplo de Modal</Text>
+                            <View style={styles.modalContainer}>
+                                <Text style={styles.modalTitle}>Exemplo de Modal</Text>
 
-                            <TextInput
-                            style={styles.textInput}
-                            placeholder="Nome Completo:"
-                            value={name}
-                            onChangeText={(value) => setName(value)}
-                            />
-                            <TextInput
-                                style={styles.textInput}
-                                placeholder="Ano nascimento:"
-                                value={dtNascimento}
-                                onChangeText={(value) => setDtNascimento(value)}
-                            />
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Nome Completo:"
+                                    value={name}
+                                    onChangeText={(value) => setName(value)}
+                                />
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Ano nascimento:"
+                                    value={dtNascimento}
+                                    onChangeText={(value) => setDtNascimento(value)}
+                                />
 
-                            <View style={styles.buttonContainer}>
-                            <Button
-                                title="Fechar Modal"
-                                onPress={() => setModalVisible(false)}
-                            />
-                            <Button
-                                title="Salvar"
-                                onPress={() => handleRent()}
-                            />
+                                <View style={styles.buttonContainer}>
+                                    <Button
+                                        title="Fechar"
+                                        onPress={() => setModalVisible(false)}
+                                    />
+                                    <Button
+                                        title="Emprestar"
+                                        onPress={() => handleRent()}
+
+                                    />
+                                    {
+                                        alert1
+                                            ? <Text style={styles.errorText}>
+                                                Estoque insuficiente!
+                                            </Text>
+                                            : <></>
+                                    }
+
+                                    {
+                                        alert2
+                                            ? <Text style={styles.errorText}>
+                                                Dados incompletos!
+                                            </Text>
+                                            : <></>
+                                    }
+
+                                    {
+                                        alert3
+                                            ? <Text style={styles.successText}>
+                                                Livro emprestado com sucesso!
+                                            </Text>
+                                            : <></>
+                                    }
+
+                                </View>
                             </View>
                         </View>
-                        </View>
-                    </Modal>  
+                    </Modal>
 
                 </View>
             </View>
@@ -113,6 +164,7 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "auto",
         backgroundColor: "#ddd",
+        borderRadius: 15,
         border: 1,
         borderColor: "#000",
         padding: 5
@@ -135,12 +187,18 @@ const styles = StyleSheet.create({
         fontSize: 10
     },
 
-
-
-
     btnEmprestar: {
         marginTop: 15,
         backgroundColor: "#F01C1C",  // Correção da cor
+        paddingVertical: 1,
+        paddingHorizontal: 10,
+        borderRadius: 5,  // Bordas arredondadas
+        alignSelf: "center",  // Alinhar à esquerda
+        marginBottom: 5,
+    },
+    btnDevolver: {
+
+        backgroundColor: "#1DDB00",  // Correção da cor
         paddingVertical: 1,
         paddingHorizontal: 10,
         borderRadius: 5,  // Bordas arredondadas
@@ -179,29 +237,39 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo escuro para o modal
-      },
-      modalContainer: {
+    },
+    modalContainer: {
         backgroundColor: 'white',
         padding: 20,
         borderRadius: 10,
         width: 300,
-      },
-      modalTitle: {
+    },
+    modalTitle: {
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
-      },
-      textInput: {
+    },
+    textInput: {
         height: 40,
         borderColor: '#ccc',
         borderWidth: 1,
         marginBottom: 10,
         paddingLeft: 8,
         borderRadius: 5,
-      },
-      buttonContainer: {
+    },
+    buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-      },
+    },
+    errorText: {
+        color: "red",
+        fontSize: 12,
+        fontStyle: "italic"
+    },
+    successText: {
+        color: "green",
+        fontSize: 14,
+        fontWeight: "bold",
+    }
 
 })
