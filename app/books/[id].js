@@ -69,8 +69,6 @@ export default function BooksPage() {
             }, 3000);
         }   
 
-
-
     }
 
     useEffect(() => {
@@ -123,7 +121,7 @@ export default function BooksPage() {
                     >
                         <View style={styles.modalBackground}>
                             <View style={styles.modalContainer}>
-                                <Text style={styles.modalTitle}>Exemplo de Modal</Text>
+                                <Text style={styles.modalTitle}>Informe seus dados</Text>
 
                                 <TextInput
                                     style={styles.textInput}
@@ -140,6 +138,8 @@ export default function BooksPage() {
 
                                 <View style={styles.buttonContainer}>
                                     <Button
+                                    
+                                        
                                         title="Fechar"
                                         onPress={() => setModalVisible(false)}
                                     />
@@ -148,7 +148,6 @@ export default function BooksPage() {
                                         onPress={() => handleRent()}
 
                                     />
-
                                 </View>
 
                                 <View>
@@ -191,83 +190,99 @@ export default function BooksPage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        padding: 16,
-        alignItems: "center"
+        backgroundColor: "#2C3E50", // Cor de fundo semelhante à anterior
+        padding: 20,
+        alignItems: "center",
+        paddingTop: 40,
     },
     card: {
-        marginTop: 15,
+        marginTop: 20,
         width: "100%",
-        height: "auto",
-        backgroundColor: "#ddd",
+        backgroundColor: "#34495E", // Cor de fundo para o card
         borderRadius: 15,
-        border: 1,
-        borderColor: "#000",
-        padding: 5
+        borderWidth: 2,
+        borderColor: "#F1C40F", // Cor dourada de borda
+        padding: 20,
+        shadowColor: "#000", 
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 5,
     },
     titleBook: {
         textAlign: "center",
         fontWeight: "bold",
-        fontSize: 16
+        fontSize: 22, // Tamanho maior do título
+        color: "#ECF0F1", // Cor de texto clara
+        marginBottom: 10,
+        fontFamily: "Roboto", // Fonte moderna
     },
     sinopseBook: {
-
         marginTop: 15,
         textAlign: "justify",
-        fontSize: 10
+        fontSize: 14,
+        color: "#BDC3C7", // Cor do texto da sinopse
     },
     qtdBook: {
         marginTop: 5,
         textAlign: "left",
         fontWeight: "bold",
-        fontSize: 10
+        fontSize: 14,
+        color: "#ECF0F1", // Cor suave para quantidade
     },
-
     btnEmprestar: {
-        marginTop: 15,
-        backgroundColor: "#F01C1C",  // Correção da cor
-        paddingVertical: 1,
-        paddingHorizontal: 10,
-        borderRadius: 5,  // Bordas arredondadas
-        alignSelf: "center",  // Alinhar à esquerda
-        marginBottom: 5,
+        marginTop: 20,
+        backgroundColor: "#1ABC9C", // Cor de fundo verde
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 30,
+        alignSelf: "center",
+        shadowColor: "#1ABC9C", 
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 5,
     },
-    btnDevolver: {
-
-        backgroundColor: "#1DDB00",  // Correção da cor
-        paddingVertical: 1,
-        paddingHorizontal: 10,
-        borderRadius: 5,  // Bordas arredondadas
-        alignSelf: "center",  // Alinhar à esquerda
-        marginBottom: 5,
-
-    },
+    // btnDevolver: {
+    //     marginTop: 15,
+    //     backgroundColor: "#1DDB00", // Cor para o botão devolver
+    //     paddingVertical: 12,
+    //     paddingHorizontal: 20,
+    //     borderRadius: 30,
+    //     alignSelf: "center",
+    //     shadowColor: "#1DDB00", 
+    //     shadowOffset: { width: 0, height: 2 },
+    //     shadowOpacity: 0.2,
+    //     shadowRadius: 3,
+    //     elevation: 5,
+    // },
     emprestarText: {
-        marginTop: 0,
         color: "white",
         fontSize: 16,
         fontWeight: "bold",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
+        textAlign: "center",
     },
-
     btnVoltar: {
-        marginTop: 0,
+        marginTop: 20,
         backgroundColor: "#283639", 
-        paddingVertical: 1,
-        paddingHorizontal: 10,
-        borderRadius: 5,  
-        alignSelf: "center",  
-        marginBottom: 5,
-
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 30,
+        alignSelf: "center",
+        shadowColor: "#283639", 
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 5,
     },
     voltarText: {
-        marginTop: 0,
         color: "white",
         fontSize: 16,
         fontWeight: "bold",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
+        textAlign: "center",
     },
-
     modalBackground: {
         flex: 1,
         justifyContent: 'center',
@@ -275,7 +290,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     },
     modalContainer: {
-        backgroundColor: 'white',
+        backgroundColor: '#34495E', 
         padding: 20,
         borderRadius: 10,
         width: 300,
@@ -284,14 +299,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
+        color: "#F1C40F", 
     },
     textInput: {
         height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
+        borderColor: '#BDC3C7',
+        borderWidth: 2,
         marginBottom: 10,
         paddingLeft: 8,
         borderRadius: 5,
+        color: "#FFFFFF",
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -306,10 +323,9 @@ const styles = StyleSheet.create({
     },
     successText: {
         marginTop: 5,
-        color: "green",
+        color: "#00ff00",
         alignSelf: "center",  
         fontSize: 14,
         fontWeight: "bold",
     }
-
-})
+});

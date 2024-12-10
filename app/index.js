@@ -39,6 +39,8 @@ export default function Page() {
       <View style={styles.container}>
         <Text style={styles.title}>BIBLIOTECA.IO</Text>
 
+
+
         <ScrollView>
           {books.map((item, index) => (
             <Pressable onPress={() => {
@@ -69,71 +71,76 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2C3E50", // Azul escuro para o fundo da tela
+    backgroundColor: "#2C3E50", 
     padding: 20,
     alignItems: "center",
     paddingTop: 40,
   },
   title: {
     fontWeight: "bold",
-    fontSize: 36,
-    color: "#F1C40F",  // Dourado para o título
+    fontSize: 40, // Aumentando o tamanho
+    color: "#F1C40F", // Mantendo a cor dourada
     textAlign: "center",
-    marginBottom: 20,
-    fontFamily: "Playfair Display", // Fonte serifada
+    marginBottom: 30,
+    fontFamily: "Merriweather",
+    letterSpacing: 3, // Aumentando o espaçamento das letras
+    textShadowColor: "#000", // Cor da sombra
+    textShadowOffset: { width: 0, height: 4 }, // Distância da sombra
+    textShadowRadius: 6, // Intensidade da sombra
+    backgroundColor: "transparent",
   },
   scrollContainer: {
     paddingBottom: 20,
   },
   card: {
     marginTop: 20,
-    width: "100%",
-    height: "auto",
-    backgroundColor: "#fff", // Branco para o fundo do card
-    borderRadius: 10,
-    borderColor: "#D4AF37", // Dourado para a borda do card
-    borderWidth: 2, // Bordas mais grossas para dar destaque
-    padding: 10,
-    shadowColor: "#000", // Sombra preta
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    width: "auto",
+    backgroundColor: "#34495E", 
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: "#F1C40F", 
+    padding: 20,
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
     elevation: 5,
   },
   titleBook: {
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 18,
-    color: "#34495E", // Azul claro escuro para o título do livro
+    fontSize: 20,
+    color: "#ECF0F1", 
+    marginBottom: 10,
+    fontFamily: "Roboto", 
   },
   authorBook: {
     textAlign: "center",
-    marginTop: 10,
-    fontSize: 14,
-    color: "#7F8C8D", // Cinza médio para o autor
-    textTransform: "capitalize",
+    fontSize: 16,
+    color: "#BDC3C7",
+    marginBottom: 8,
   },
   yearBook: {
     textAlign: "center",
-    fontSize: 12,
-    color: "#95A5A6", // Cinza claro para o ano
-    marginTop: 5,
+    fontSize: 14,
+    color: "#95A5A6", 
+    marginTop: 4,
   },
   btn: {
-    backgroundColor: "#1A5276", // Azul escuro para o botão
+    backgroundColor: "#1ABC9C", 
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 30,
     marginTop: 10,
     alignSelf: "center",
-    shadowColor: "#1A5276", // Sombra para o botão
+    shadowColor: "#1ABC9C", 
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 5,
   },
   btnText: {
-    color: "#F1C40F", // Texto dourado no botão
+    color: "#F1C40F", 
     fontSize: 16,
     fontWeight: "bold",
     textTransform: "uppercase",
