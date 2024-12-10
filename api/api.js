@@ -48,7 +48,7 @@ export const postEmprestar = async (idBook, nomeUser, anoNasc) => {
             throw new Error("Post request failed!")
         }
 
-        return null;
+        return true;
 
     } catch (error) {
         console.error(error);

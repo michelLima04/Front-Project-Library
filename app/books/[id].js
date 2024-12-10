@@ -1,4 +1,4 @@
-import { router, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import { getLerUnicoLivro, postEmprestar } from "../../api/api";
 import { useEffect, useState } from "react";
@@ -18,21 +18,44 @@ export default function BooksPage() {
     const [alert3, setAlert3] = useState(false); //Emprestado!
     const { id } = useLocalSearchParams();
 
+    const router = useRouter();
+
+    const clearRedirect = (waiting = false) => {
+        setName("");
+        setDtNascimento("");
+        setBookId();
+
+        if (waiting) {
+            router.push('/'); 
+        }
+
+
+        setAlert1(false);
+        setAlert2(false);
+        setAlert3(false);
+
+
+    }
+
     const handleRent = async () => {
-
-
         if (name === "" || dtNascimento === "") {
             setAlert2(true);
             setTimeout(() => {
-                setAlert2(false);
+                setAlert2();
+
+                clearRedirect();
             }, 2000);
             return;
 
         }
+
         if (book.qtd < 1) {
             setAlert1(true);
             setTimeout(() => {
                 setAlert1(false);
+
+                clearRedirect();
+
             }, 2000);
             return;
 
@@ -44,11 +67,14 @@ export default function BooksPage() {
             setAlert3(true);
             setTimeout(() => {
                 setAlert3(false);
+
+                clearRedirect(true);
+
             }, 3000);
-        }
+        }   
 
 
-        setAlert1(false);
+
     }
 
     useEffect(() => {
@@ -120,32 +146,36 @@ export default function BooksPage() {
                                         onPress={() => handleRent()}
 
                                     />
-                                    {
-                                        alert1
-                                            ? <Text style={styles.errorText}>
-                                                Estoque insuficiente!
-                                            </Text>
-                                            : <></>
-                                    }
-
-                                    {
-                                        alert2
-                                            ? <Text style={styles.errorText}>
-                                                Dados incompletos!
-                                            </Text>
-                                            : <></>
-                                    }
-
-                                    {
-                                        alert3
-                                            ? <Text style={styles.successText}>
-                                                Livro emprestado com sucesso!
-                                            </Text>
-                                            : <></>
-                                    }
 
                                 </View>
+
+                                <View>
+                                        {
+                                             alert1
+                                                ? <Text style={styles.errorText}>
+                                                    Estoque insuficiente!
+                                                </Text>
+                                                : <></>
+                                        }
+
+                                        {
+                                            alert2
+                                                ? <Text style={styles.errorText}>
+                                                    Dados incompletos!
+                                                </Text>
+                                                : <></>
+                                        }
+
+                                        {
+                                            alert3
+                                                ? <Text style={styles.successText}>
+                                                    Livro emprestado com sucesso!
+                                                </Text>
+                                                : <></>
+                                        }
+                                </View>
                             </View>
+                           
                         </View>
                     </Modal>
 
