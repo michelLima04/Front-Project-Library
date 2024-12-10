@@ -27,22 +27,26 @@ export default function BooksPage() {
                 setAlert2(false);
             }, 2000);
             return;
-            
-        }else if (book.qtd < 1) {
+
+        }
+        if (book.qtd < 1) {
             setAlert1(true);
             setTimeout(() => {
                 setAlert1(false);
             }, 2000);
             return;
 
-        }else{
+        }
+
+        const rent = await postEmprestar(bookId, name, dtNascimento);
+
+        if(rent){
             setAlert3(true);
             setTimeout(() => {
                 setAlert3(false);
             }, 3000);
         }
 
-        const rent = await postEmprestar(bookId, name, dtNascimento);
 
         setAlert1(false);
     }
