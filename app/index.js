@@ -37,7 +37,7 @@ export default function Page() {
     <>
     
       <View style={styles.container}>
-        <Text style={styles.title}>Biblioteca</Text>
+        <Text style={styles.title}>BIBLIOTECA.IO</Text>
 
         <ScrollView>
           {books.map((item, index) => (
@@ -69,61 +69,74 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    padding: 16,
-    alignItems: "center"
+    backgroundColor: "#2C3E50", // Azul escuro para o fundo da tela
+    padding: 20,
+    alignItems: "center",
+    paddingTop: 40,
   },
   title: {
     fontWeight: "bold",
-    fontSize: 20,
-    textAlign: "center"
+    fontSize: 36,
+    color: "#F1C40F",  // Dourado para o título
+    textAlign: "center",
+    marginBottom: 20,
+    fontFamily: "Playfair Display", // Fonte serifada
+  },
+  scrollContainer: {
+    paddingBottom: 20,
   },
   card: {
-    marginTop: 15,
+    marginTop: 20,
     width: "100%",
-    height: 100,
-    backgroundColor: "#ddd",
-    borderRadius: 15,
-    borderColor: "#000",
-    padding: 5
+    height: "auto",
+    backgroundColor: "#fff", // Branco para o fundo do card
+    borderRadius: 10,
+    borderColor: "#D4AF37", // Dourado para a borda do card
+    borderWidth: 2, // Bordas mais grossas para dar destaque
+    padding: 10,
+    shadowColor: "#000", // Sombra preta
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
   },
   titleBook: {
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 16
+    fontSize: 18,
+    color: "#34495E", // Azul claro escuro para o título do livro
   },
   authorBook: {
     textAlign: "center",
-    marginTop: 15,
-    textTransform: 'capitalize',
-    fontSize: 14
+    marginTop: 10,
+    fontSize: 14,
+    color: "#7F8C8D", // Cinza médio para o autor
+    textTransform: "capitalize",
   },
   yearBook: {
     textAlign: "center",
     fontSize: 12,
-    fontWeight: "bold"
+    color: "#95A5A6", // Cinza claro para o ano
+    marginTop: 5,
   },
   btn: {
-    backgroundColor: "#F01C1C",  // Correção da cor
-    paddingVertical: 1,
-    paddingHorizontal: 15,
-    borderRadius: 5,  // Bordas arredondadas
-    marginTop: 0,
-    alignSelf: "flex-end",  // Alinhar à esquerda
-    marginBottom: 5,
-
+    backgroundColor: "#1A5276", // Azul escuro para o botão
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    marginTop: 10,
+    alignSelf: "center",
+    shadowColor: "#1A5276", // Sombra para o botão
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 5,
   },
   btnText: {
-    color: "white",
+    color: "#F1C40F", // Texto dourado no botão
     fontSize: 16,
     fontWeight: "bold",
-    textTransform: "uppercase"
-  },
-  item:{
+    textTransform: "uppercase",
     textAlign: "center",
   },
-  example:{
-    backgroundColor: "red"
-  }
-  
 });

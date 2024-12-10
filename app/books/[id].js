@@ -28,13 +28,9 @@ export default function BooksPage() {
         if (waiting) {
             router.push('/'); 
         }
-
-
         setAlert1(false);
         setAlert2(false);
         setAlert3(false);
-
-
     }
 
     const handleRent = async () => {
@@ -100,6 +96,12 @@ export default function BooksPage() {
                     >
                         <Text style={styles.emprestarText}>Emprestar</Text>
                     </TouchableOpacity>
+
+
+
+                    {/* delvover */}
+
+                    
 
 
                     <TouchableOpacity
@@ -250,11 +252,11 @@ const styles = StyleSheet.create({
 
     btnVoltar: {
         marginTop: 0,
-        backgroundColor: "#283639",  // Correção da cor
+        backgroundColor: "#283639", 
         paddingVertical: 1,
         paddingHorizontal: 10,
-        borderRadius: 5,  // Bordas arredondadas
-        alignSelf: "center",  // Alinhar à esquerda
+        borderRadius: 5,  
+        alignSelf: "center",  
         marginBottom: 5,
 
     },
@@ -270,7 +272,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo escuro para o modal
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     },
     modalContainer: {
         backgroundColor: 'white',
@@ -296,12 +298,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     errorText: {
+        marginTop: 5,
         color: "red",
-        fontSize: 12,
-        fontStyle: "italic"
+        alignSelf: "center",  
+        fontSize: 14,
+        fontWeight: "bold",
     },
     successText: {
+        marginTop: 5,
         color: "green",
+        alignSelf: "center",  
         fontSize: 14,
         fontWeight: "bold",
     }
