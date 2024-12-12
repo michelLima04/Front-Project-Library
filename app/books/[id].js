@@ -190,7 +190,7 @@ export default function BooksPage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#2C3E50", // Cor de fundo semelhante à anterior
+        backgroundColor: "#2C3E50", 
         padding: 20,
         alignItems: "center",
         paddingTop: 40,
@@ -198,10 +198,10 @@ const styles = StyleSheet.create({
     card: {
         marginTop: 20,
         width: "100%",
-        backgroundColor: "#34495E", // Cor de fundo para o card
+        backgroundColor: "#34495E", 
         borderRadius: 15,
         borderWidth: 2,
-        borderColor: "#F1C40F", // Cor dourada de borda
+        borderColor: "#F1C40F",
         padding: 20,
         shadowColor: "#000", 
         shadowOffset: { width: 0, height: 6 },
@@ -212,27 +212,27 @@ const styles = StyleSheet.create({
     titleBook: {
         textAlign: "center",
         fontWeight: "bold",
-        fontSize: 22, // Tamanho maior do título
-        color: "#ECF0F1", // Cor de texto clara
+        fontSize: 22, 
+        color: "#ECF0F1", 
         marginBottom: 10,
-        fontFamily: "Roboto", // Fonte moderna
+        fontFamily: "Roboto",
     },
     sinopseBook: {
         marginTop: 15,
         textAlign: "justify",
         fontSize: 14,
-        color: "#BDC3C7", // Cor do texto da sinopse
+        color: "#BDC3C7", 
     },
     qtdBook: {
         marginTop: 5,
         textAlign: "left",
         fontWeight: "bold",
         fontSize: 14,
-        color: "#ECF0F1", // Cor suave para quantidade
+        color: "#ECF0F1", 
     },
     btnEmprestar: {
         marginTop: 20,
-        backgroundColor: "#1ABC9C", // Cor de fundo verde
+        backgroundColor: "#1ABC9C", 
         paddingVertical: 12,
         paddingHorizontal: 20,
         borderRadius: 30,
